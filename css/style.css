@@ -28,3 +28,8 @@ footer{
     vertical-align: middle;
     border-radius: 15px;
 }
+#textForm{
+    margin: auto;
+    width: 50%;
+    padding: 1em;
+}
