@@ -1,11 +1,12 @@
 <?php
 
-createConnection(){
+function createConnection(){
     $url = '';
     $user = '';
-    $pass = '';
+    $password = '';
     $dbname = '';
-    $conn = new mysqli($url, $user, $password, $dbnmae);
+    $conn = new mysqli($url, $user, $password, $dbname);
+    return $conn;
 }
 
 function startSession(){
@@ -15,7 +16,7 @@ function startSession(){
 }
 
 function isLoggedIn(){
-    if(isset($_SESSION['login'] && $SESSION['login'] == true)){
+    if(isset($_SESSION['login']) && $_SESSION['login'] == true){
         return true;
     }
     return false;
