@@ -18,12 +18,15 @@
     <header>
         <h1>Trade View</h1>
     </header>
-    
-    <form id='textForm'>
-        <p><label>Email:</label></p>
-        <p><input type='text' name='email'/></p>
-        <p><label>Password:</label></p>
-        <p><input type='password' name='password'/></p>
-        <p><input type="submit"/></p>
-    </form>
+    <div id='center'>
+        <form id='textForm'>
+            <p><label>Email:</label></p>
+            <p><input id='email' type='text' name='email'/></p>
+            <p><label>Password:</label></p>
+            <p><input id='password' type='password' name='password'/></p>
+            <p><input type="submit" value='Sign in'/></p>
+            <p id='message'></p>
+            <p><a href="pages/signup.html">No account? Create one here</a></p>
+        </form>
+    </div>
 </body>
