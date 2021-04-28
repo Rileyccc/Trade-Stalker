@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="utf-8">
+    <title>Trade Watch</title>
+    <link rel="stylesheet" href="../css/style.css" />
+    <script src="http://code.jquery.com/jquery-3.1.1.min.js"></script>
+    <script>
+    if (!window.jQuery) {
+    var script = document.createElement('script');
+    script.src = "../js/jquery-3.1.1.min.js";
+    document.body.appendChild(script);
+    }
+    </script>
+    <script type="text/javascript" src="../js/signIn.js"></script>
+</head>
+<body>    
+    <header>
+        <h1>Trade View</h1>
+    </header>
+    <div id='center'>
+        <form id='textForm'>
+            <p><label>Email:</label></p>
+            <p><input id='email' type='text' name='email'/></p>
+            <p><label>Password:</label></p>
+            <p><input id='password' type='password' name='password'/></p>
+            <p><input type="submit" value='Sign In'/></p>
+            <p id='message'></p>
+        </form>
+    </div>
+</body>
