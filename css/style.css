@@ -1,0 +1,30 @@
+body{
+    background-color: rgb(0, 0, 0);
+    font-family:Century Gothic;
+    color:rgb(255, 255, 255);
+}
+header{
+    font-size: 2em;
+    text-align: center;
+    vertical-align: middle;
+    line-height: 90px; 
+    background-color:rgb(98, 98, 98);
+    border-radius: 15px;
+    
+}
+table{
+    border-radius: 15px;
+    background-color:rgb(87, 87, 87);
+    margin: 2em auto;
+    width: 90%;
+}
+td{
+    text-align: center;
+    font-size: 2em;
+}
+footer{
+    background-color: rgb(8, 8, 8);
+    text-align: center;
+    vertical-align: middle;
+    border-radius: 15px;
+}
