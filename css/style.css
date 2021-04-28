@@ -28,8 +28,21 @@ footer{
     vertical-align: middle;
     border-radius: 15px;
 }
-#textForm{
+a{
+    color:rgb(255, 255, 255);
+}
+#center{
+    
+    background-color:rgb(98, 98, 98);
+    width:25%;
+   
     margin: auto;
-    width: 50%;
+    margin-top: 10%;
+}
+#textForm{
+    text-align: center;
     padding: 1em;
+}
+.error{
+    background-color: red;
 }
