@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="utf-8">
+    <title>Trade Watch</title>
+    <link rel="stylesheet" href="../css/style.css" />
+    <script src="http://code.jquery.com/jquery-3.1.1.min.js"></script>
+    <script>
+    if (!window.jQuery) {
+    var script = document.createElement('script');
+    script.src = "../js/jquery-3.1.1.min.js";
+    document.body.appendChild(script);
+    }
+    </script>
+    <script type="text/javascript" src="../js/addStock.js"></script>
+</head>
+<body>    
+    <header>
+        <h1>Trade View</h1>
+    </header>
+    <div id='center'>
+        <form id='textForm'>
+            
+            <p><label>Stock Symbol (Ticker)</label></p>
+            <p><input id='ticker' type='text' name='ticker'/></p>
+            <p><label>Quantity bought</label></p>
+            <p><input id='quantity' type='' name='quantity'/></p>
+            <p><label>Price Bought At</label></p>
+            <p><input id='purchasePrice' type='' name='purchasePrice'/></p>
+            <p> 
+                <p><label>Currency</label></p>
+                <select name="currency" id="currency">
+                    <option value="AUD">AUD</option>
+                    <option value="CAD">CAD</option>
+                    <option value="CHF">CBG</option>
+                    <option value="USD">USD</option>
+                    <option value="EUR">EUR</option>
+                </select>
+            </p>
+            <p><input type="submit" value='Add stock to View'/></p>
+            <p id='message'></p>
+        </form>
+    </div>
+</body>
