@@ -33,7 +33,8 @@ $(document).ready(function(){
             $.ajax({
                 type: "post",
                 url:  "../php/addStock.php",
-                data: formdata
+                data: formdata,
+                aysnc: true
             }).done(function(data){
                 if(data == "success"){
                   // add redirect to either add stock or mainview
