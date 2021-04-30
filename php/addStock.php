@@ -20,7 +20,7 @@ $currency = $_POST["currency"];
 // create connection
 $conn = createConnection();
 // add stock to database
-$stmt = $conn->prepare("INSERT INTO stock (email ,ticker, quantity, purchasePrice,currency) VALUES(?, ?, ?, ?, ?)");
+$stmt = $conn->prepare("INSERT INTO stock (email, ticker, quantity, purchasePrice, currency) VALUES (?, ?, ?, ?, ?)");
 $stmt->bind_param("sssss", $email, $ticker, $quantity, $purchasePrice, $currency);
 if($stmt->execute()){
     $conn->close();
