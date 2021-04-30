@@ -2,8 +2,8 @@ CREATE TABLE trader(
     email VARCHAR(75),
     password VARCHAR(200),
     PRIMARY KEY(email)
-)
-CREATE TABLE AppVersion(
+);
+CREATE TABLE Stock(
     email VARCHAR(75),
     ticker VARCHAR(10),
     quanity int,
