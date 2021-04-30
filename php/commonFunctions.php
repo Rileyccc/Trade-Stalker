@@ -1,10 +1,10 @@
 <?php
 
 function createConnection(){
-    $url = '';
-    $user = '';
+    $url = 'localhost';
+    $user = 'root';
     $password = '';
-    $dbname = '';
+    $dbname = 'tradestalker';
     $conn = new mysqli($url, $user, $password, $dbname);
     return $conn;
 }
