@@ -15,7 +15,7 @@ $email = $_POST["email"];
 $password = $_POST["password"];
 
 // check if email and password are valid
-$stmt = $conn->prepare("SELECT email password FROM trader WHERE email = ? ");
+$stmt = $conn->prepare("SELECT password FROM trader WHERE email = ? ");
 $stmt->bind_param("s", $email);
 $stmt->execute();
 $result = $stmt->get_result();
@@ -27,6 +27,7 @@ if(is_null($row)){
 }else{
     // there can only be one row so no need to iterate
     // if password hash match then valid user
+    
     if(password_verify($password, $row["password"])){
         // sets session variable to know user is logged in
         $_SESSION["login"] = true;
