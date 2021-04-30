@@ -19,11 +19,12 @@ $(document).ready(function(){
         if(valid()){
             $.ajax({
                 type: "post",
-                url:  "../php/signIn.php",
+                url:  "../php/signUp.php",
                 data: formdata
             }).done(function(data){
                 if(data == "success"){
                   // add redirect to either add stock or mainview
+                  document.location.href = './addStocks.html';
                 }
                 $("#message").html(data);
             }).fail(function(jqXHR) {console.log("Error: " + jqXHR.status);});
