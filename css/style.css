@@ -20,7 +20,9 @@ table{
 }
 td{
     text-align: center;
-    font-size: 2em;
+    font-size: 1em;
+    width: 16.66%;
+    max-width: 16.66%;
 }
 footer{
     background-color: rgb(8, 8, 8);
@@ -45,4 +47,10 @@ a{
 }
 .error{
     background-color: red;
+}
+.red{
+    color: rgb(156, 28, 28);
+}
+.green{
+    color: rgb(91, 233, 103);
 }
