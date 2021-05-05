@@ -11,17 +11,23 @@ if(!isLoggedIn()){
 $email = $_SESSION["email"];
 
 $conn = createConnection();
-$stmt = $conn->prepare("SELECT ticker, quantity, purchasePrice, currency FROM stock WHERE email=?");
+$stmt = $conn->prepare("SELECT ticker, quantity, purchasePrice, currency, crypto FROM stock WHERE email=?");
 $stmt->bind_param("s", $email);
 $stmt->execute() or die("something went wrong");
 $result = $stmt->get_result();
-echo '{\n "Stocks": {\n';
+echo '{ "stocks": [';
 $count = 0;
-while ($row = mysqli_fetch_array($result)){
-    echo '"$count":{\n';
-    echo '"ticker": '.$row['ticker'] . ",\n ".'"quantity": ' . $row['quantity'] . ",\n ". '"purchasePrice"' . $row['purchasePrice'] . ",\n ". '"currency"' . $row['currency']. "\n },\n";
+// make json output use do while to ensure no comma after the last stock
+do{
+    if($count >= 2){
+        echo ",";
+    }
+    if($count >= 1){
+        echo '{';
+        echo '"ticker":"'.$row['ticker'] . '",' .'"quantity":"' . $row['quantity'] . '", '. '"purchasePrice":"' . $row['purchasePrice'] . '", '. '"currency":"' . $row['currency']. '", '. '"crypto":"'. $row['crypto'] . '"}';
+    }
     $count++;
-}
-echo "} \n }";
+}while ($row = mysqli_fetch_array($result));
+echo "] }";
 
 ?>
