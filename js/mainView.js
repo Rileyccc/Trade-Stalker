@@ -1,4 +1,8 @@
 $( document ).ready( function(){
+    var currentWorth = 0;
+    var totalCost = 0;
+
+
     // ensure user is logged in
     $.ajax({
         type: "post",
@@ -12,6 +16,7 @@ $( document ).ready( function(){
     
     // get all stocks from data base 
     function getStocks(){
+        // reset current worth and cost every iteration
         $.ajax({
             type: "post",
             url:  "../php/getStocksOwned.php",
@@ -20,6 +25,7 @@ $( document ).ready( function(){
            $("#test").html(data);
            var obj = JSON.parse(data)
            $.each(obj.stocks, function(i, element){
+                totalCost += element.purchasePrice * element.quantity;
                 getPrice(element);
                 // for each element update table 
            });
@@ -41,10 +47,15 @@ $( document ).ready( function(){
             // value color change will be the outcome of the price so change it accordinly
             removeColorClass($("."+element.ticker + " .value"));
             addColorClass(prevPrice, curPrice, $("."+element.ticker + " .value"));
-            // update quantity
-            $("."+element.ticker + " .quantity").html(element.quantity);
+            // update quantity cryptos can have part shares
+            if(element.crypto == 1){
+                $("."+element.ticker + " .quantity").html(element.quantity);
+            }else{
+                $("."+element.ticker + " .quantity").html(parseFloat(element.quantity).toFixed(0));
+            }
             //update value
             var value = curPrice * element.quantity;
+            currentWorth += value;
             $("."+element.ticker + " .value").html(value);
             //update change 
             var change = value - (element.purchasePrice * element.quantity);
@@ -52,19 +63,20 @@ $( document ).ready( function(){
             $("."+element.ticker + " .change").html(change);
             addColorClass(0, change, $("."+element.ticker + " .change"));
             //update percentage
-            var percentage = (change/value) * 100;
+            var percentage = (((element.purchasePrice * element.quantity)/value)) * 100;
             removeColorClass($("."+element.ticker + " .percentage"));
             $("."+element.ticker + " .change").html(percentage);
-            addColorClass(0, percentage, $("."+element.ticker + " .percentage"));
+            addColorClass(0.01, percentage, $("."+element.ticker + " .percentage"));
         // table already exist usdate fields
         }else{
             createTable(element, curPrice);
         }
     }
     function createTable(element, curPrice){
-        var value = curPrice * element.quantity;
-        var change = value - (element.purchasePrice * element.quantity);
-        percentage = (value/100.0) * change
+        var value = formatNumber(curPrice * element.quantity);
+        currentWorth += curPrice * element.quantity;
+        var change = formatNumber(value - (element.purchasePrice * element.quantity));
+        percentage = formatNumber((change/(element.purchasePrice * element.quantity)) * 100);
         var table ='' +
         '<table class=' + '"' + element.ticker +'">'  +
             '<tr>' +
@@ -78,13 +90,13 @@ $( document ).ready( function(){
             '<tr>'+
                 '<td><img src="https://listimg.pinclipart.com/picdir/s/11-111367_big-image-simple-stock-market-chart-clipart.png" height=150 width=250/></td>' +
                 '<td class="curprice">' + curPrice + '</td>' +
-                '<td class="quantity">' + element.quantity+ '</td>' +
+                '<td class="quantity">' + ( element.crypto == '1'?  element.quantity: parseFloat(element.quantity).toFixed(0)) + '</td>' +
                 '<td class="value">' + value + '</td>' +
                 '<td class="change">' + change + '</td>' +
                 '<td class="percentage">' + percentage + '</td>' +
             '</tr>'+
         '</table>';
-        $("#main").append(table);    
+        $("#main").prepend(table);    
         if(change > 0){
             $("."+element.ticker + ' .change').addClass("green");
         }else{
@@ -102,7 +114,7 @@ $( document ).ready( function(){
             aysnc: false
         }).done(function(data){
             //currently only works with crypto make getprice.php get any stock price and only return price
-            updateTable(element, data);
+            updateTable(element, formatNumber(data));
         }).fail(function(jqXHR) {console.log("Error: " + jqXHR.status);});
     }
     // remove all color classes on rows.
@@ -124,11 +136,47 @@ $( document ).ready( function(){
             selector.addClass("green");
         }
     }
+    // returns float with only 2 decimal places
+    function formatNumber(num){
+        return parseFloat(num).toFixed(2);
+    }
+    function setAggregateTable(){
+        // todo add chart
+        $(".cost").html(formatNumber(totalCost));
+
+        // set current worth
+        $(".worth").html(formatNumber(currentWorth));
+        // remove color classes
+        removeColorClass($(".worth"))
+        // add colour class 
+        addColorClass(totalCost, currentWorth, $(".worth"));
+        
+        var profolioChange = currentWorth-totalCost;
+        // set current change in profolio worth
+        $(".profolioChange").html(formatNumber(profolioChange));
+        // remove color classes
+        removeColorClass($(".profolioChange"));
+        // add colour class 
+        addColorClass(0, profolioChange, $(".profolioChange"));
+
+        // set current change in percentage of profolio change
+        $(".profolioPercentage").html(formatNumber(((profolioChange)/totalCost)*100));
+        // remove color classes
+        removeColorClass($(".profolioPercentage"));
+        // add colour class 
+        addColorClass(0, profolioChange, $(".profolioPercentage"));
+    }
+
+    // listener to know when all ajax calls are completed so the aggregatedTable can be set
+    $(document).ajaxStop(function(){
+        setAggregateTable()
+    });
 
     
     
     // every minute check if database has changed.. stocks sold or bought
     getStocks();
+    
     setInterval(getStocks, 60000);
 
     // every minute generate chart of stocks and get current price... adjust tables values.
