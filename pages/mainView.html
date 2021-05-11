@@ -2,7 +2,7 @@
 <html>
 <head lang="en">
     <meta charset="utf-8">
-    <title>Trade Watch</title>
+    <title>Trade Stalker</title>
     <link rel="stylesheet" href="../css/style.css" />
     <script src="http://code.jquery.com/jquery-3.1.1.min.js"></script>
     <script>
@@ -17,10 +17,27 @@
 </head>
 <body>
     <header>
-        <h1>Trade View</h1>
+        <h1>Trade Stalker</h1>
     </header>
     <div id="main">
-       
+       <div id="aggregate">
+       <table class="aggregateTable">
+            <tr>
+                <td>Aggregate Chart</td>
+                <td>Profolio Cost</td>
+                <td>Profolio Worth</td> 
+                <td>+/-</td> 
+                <td>%</td> 
+            </tr>
+            <tr>
+                <td><img src="https://listimg.pinclipart.com/picdir/s/11-111367_big-image-simple-stock-market-chart-clipart.png" height=150 width=250/></td>
+                <td class="cost"></td>
+                <td class="worth"></td>
+                <td class="profolioChange"></td>
+                <td class="profolioPercentage"></td>
+            </tr>
+        </table>
+       </div>
     </div>
     <footer>
         <h3 id="test"></h3>
