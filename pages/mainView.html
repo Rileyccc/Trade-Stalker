@@ -13,24 +13,25 @@
         document.body.appendChild(script);
     }
     </script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.2.1/dist/chart.min.js"></script>
     <script type="text/javascript" src="../js/mainView.js"></script>
 </head>
 <body>
     <header>
-        <h1>Trade Stalker</h1>
+        
+        <h1><img id="menuButton" src="../media/menu.png" height=50 width=50>  Trade Stalker</h1>
     </header>
     <div id="main">
        <div id="aggregate">
        <table class="aggregateTable">
             <tr>
-                <td>Aggregate Chart</td>
+               
                 <td>Profolio Cost</td>
                 <td>Profolio Worth</td> 
                 <td>+/-</td> 
                 <td>%</td> 
             </tr>
             <tr>
-                <td><img src="https://listimg.pinclipart.com/picdir/s/11-111367_big-image-simple-stock-market-chart-clipart.png" height=150 width=250/></td>
                 <td class="cost"></td>
                 <td class="worth"></td>
                 <td class="profolioChange"></td>
