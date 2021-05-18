@@ -6,7 +6,7 @@ CREATE TABLE trader(
 CREATE TABLE Stock(
     email VARCHAR(75),
     ticker VARCHAR(10),
-    quantity decimal (10,8),
+    quantity decimal (30,8),
     purchasePrice decimal(10,2),
     currency VARCHAR(3),
     crypto BOOLEAN,
