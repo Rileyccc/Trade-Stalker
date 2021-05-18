@@ -8,13 +8,15 @@ header{
     text-align: center;
     vertical-align: middle;
     line-height: 90px; 
-    background-color:rgb(98, 98, 98);
+    background-color:rgb(47, 47, 47);
+
     border-radius: 15px;
     
 }
 table{
     border-radius: 15px;
-    background-color:rgb(87, 87, 87);
+    background-color:rgb(47, 47, 47);
+
     margin: 2em auto;
     width: 90%;
 }
@@ -35,7 +37,7 @@ a{
 }
 #center{
     
-    background-color:rgb(98, 98, 98);
+    background-color:rgb(47, 47, 47);
     width:25%;
    
     margin: auto;
@@ -49,8 +51,13 @@ a{
     background-color: red;
 }
 .red{
-    color: rgb(156, 28, 28);
+    color: rgb(220, 20, 60);
 }
 .green{
     color: rgb(91, 233, 103);
+}
+#menuButton{
+    float: left;
+    margin-top: .25em;
+    margin-left: .25em
 }
