@@ -260,11 +260,12 @@ $( document ).ready( function(){
     // every minute check if database has changed.. stocks sold or bought
     getStocks();
     
+    // refresh every 15 minutes just to use free api 
     setInterval(function(){
         currentWorth = 0;
         totalCost = 0;
         getStocks();
-    }, 60000);
+    }, 900000);
 
     // every minute generate chart of stocks and get current price... adjust tables values.
 
